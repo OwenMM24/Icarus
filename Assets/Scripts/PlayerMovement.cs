@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public BackgroundScroll background_scroll;
+    public GameManager gameManager;
     float background_speed;
 
     Rigidbody2D rb;
@@ -14,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
 
     float start_peak_vector;
     bool first_time = true;
+
+    float input_lockout_time, input_lockout_timer = .5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,25 +31,33 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //when space is pressed down is resets variables
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && input_lockout_time >= input_lockout_timer)
         {
             dive_time = 0f;
             level_peak = false;
             rb.velocity = Vector3.zero;
             first_time = true;
         }
+        if (Input.GetKeyUp("space"))
+            input_lockout_time = 0f;
+        
     }
 
     void FixedUpdate()
     {
+
+        input_lockout_time += Time.deltaTime;
+
         //while space is being held down character accelerates downwards and counts how long its happening for
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
             background_speed += .01f;
             background_scroll.SetSpeed(background_speed);
+            gameManager.changeStability(-.1f);
         }
+
 
         //on release space the player shoots back up for the amount of time space was held down for
         if(!Input.GetKey("space") && dive_time > 0f)

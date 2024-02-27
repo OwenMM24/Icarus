@@ -9,6 +9,7 @@ public class StartingActions : MonoBehaviour
     bool start_sequence, controls_availible, jumpped = false;
 
     public PlayerMovement playerMovement;
+    public GameManager gameManager;
 
     float sequence_time = 0f;
     Rigidbody2D rb;
@@ -60,6 +61,7 @@ public class StartingActions : MonoBehaviour
                     player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 3.6f), ForceMode2D.Impulse);
                     jumpped = true;
                     playerMovement.enabled = true;
+                    gameManager.enabled = true;
                 }
             }
 
