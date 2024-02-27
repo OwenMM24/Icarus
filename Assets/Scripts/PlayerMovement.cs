@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    public BackgroundScroll background_scroll;
+    float background_speed;
 
     Rigidbody2D rb;
     float dive_force = -0.3f;
@@ -18,19 +19,20 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        background_speed = background_scroll.GetSpeed();
     }
 
     // Update is called once per frame
 
     private void Update()
     {
-
         //when space is pressed down is resets variables
         if (Input.GetKeyDown("space"))
         {
             dive_time = 0f;
             level_peak = false;
             rb.velocity = Vector3.zero;
+            first_time = true;
         }
     }
 
@@ -41,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
+            background_speed += .01f;
+            background_scroll.SetSpeed(background_speed);
         }
 
         //on release space the player shoots back up for the amount of time space was held down for
@@ -61,13 +65,14 @@ public class PlayerMovement : MonoBehaviour
                 start_peak_vector = rb.velocity.y;
                 first_time = false;
             }
+
             //proccess of smoothly making y velocity to 0
             if (start_peak_vector > 0f)
             {
                 rb.velocity = new Vector3(rb.velocity.x, start_peak_vector);
                 start_peak_vector -= Time.deltaTime * 5f;
-                //Debug.Log(start_peak_vector);
             }
+
             //finished, reset values
             else
             {

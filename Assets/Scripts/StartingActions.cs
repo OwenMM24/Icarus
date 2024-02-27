@@ -27,26 +27,33 @@ public class StartingActions : MonoBehaviour
         platform_start_pos = start_platform.transform.position;
     }
 
-    // Update is called once per frame
+/*    // Update is called once per frame
     void Update()
     {
+
+    }*/
+
+    void Update()
+    {
+        //pressing space to start
         if (Input.GetKeyDown("space"))
         {
             start_sequence = true;
         }
-    }
 
-    void FixedUpdate()
-    {
-
+        //start sequence is the little bit of character running and jumpping at start
         if (start_sequence)
         {
+            //sequence time acts as a world clock starting after space is pressed
             sequence_time += Time.deltaTime;
             start_text.SetActive(false);
-            start_platform.transform.position = platform_start_pos + new Vector3 (-sequence_time * 2.3f, 0, 0);
-            background_scroll.SetSpeed(.25f);
 
-            if (sequence_time > 3f)
+            //moving the platform to the left and starting background scroll
+            start_platform.transform.position = platform_start_pos + new Vector3 (-sequence_time * 5f, 0, 0);
+            background_scroll.SetSpeed(1.6f);
+
+            //this is when the character auto jumps at edge
+            if (sequence_time > 1.5f)
             {
                 if (!jumpped)
                 {
@@ -55,11 +62,11 @@ public class StartingActions : MonoBehaviour
                     playerMovement.enabled = true;
                 }
             }
-            if (sequence_time > 6f)
+
+            //this turns on player movement and turns off this script as well as deletes the platform
+            if (sequence_time > 3f)
             {
-                Debug.Log("hit1");
                 Destroy(start_platform);
-                Debug.Log("hit2");
                 enabled = false;
             }
         }

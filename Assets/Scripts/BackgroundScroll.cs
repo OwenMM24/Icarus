@@ -18,7 +18,7 @@ public class BackgroundScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        offset += (Time.deltaTime * speed);
+        offset += ((Time.deltaTime / 10) * speed);
         material.SetTextureOffset("_MainTex", new Vector2(offset, 0));
 
     }
@@ -27,4 +27,9 @@ public class BackgroundScroll : MonoBehaviour
     {
         speed = newSpeed;
     }
+    public float GetSpeed()
+    {
+        return speed;
+    }
+
 }

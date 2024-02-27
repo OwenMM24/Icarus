@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 367178829}
   - component: {fileID: 367178828}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 1794378378}
   - component: {fileID: 1794378380}
   m_Layer: 0
-  m_Name: Square
+  m_Name: startingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c181b7ad77cefb34690497671bd9388b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background_scroll: {fileID: 367178828}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
