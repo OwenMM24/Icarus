@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dive_time = 0f;
             level_peak = false;
+            rb.velocity = Vector3.zero;
         }
     }
 
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.velocity = new Vector3(rb.velocity.x, start_peak_vector);
                 start_peak_vector -= Time.deltaTime * 5f;
-                Debug.Log(start_peak_vector);
+                //Debug.Log(start_peak_vector);
             }
             //finished, reset values
             else
