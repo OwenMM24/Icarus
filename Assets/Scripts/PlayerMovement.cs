@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private SpriteRenderer spriteRenderer;
+    public Sprite[] sprites;
+    private int spriteIndex;
+
     public BackgroundScroll background_scroll;
     public GameManager gameManager;
     float background_speed;
@@ -18,12 +22,17 @@ public class PlayerMovement : MonoBehaviour
 
     float input_lockout_time, input_lockout_timer = .5f;
 
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         background_speed = background_scroll.GetSpeed();
+        InvokeRepeating(nameof(Animatesprite), 0.75f, 0.75f);
     }
 
     // Update is called once per frame
@@ -57,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             background_scroll.SetSpeed(background_speed);
             gameManager.changeStability(-.1f);
         }
-
+        
 
         //on release space the player shoots back up for the amount of time space was held down for
         if(!Input.GetKey("space") && dive_time > 0f)
@@ -93,5 +102,17 @@ public class PlayerMovement : MonoBehaviour
                 first_time = true;
             }
         }
+    }
+
+    private void Animatesprite()
+    {
+        spriteIndex++;
+
+        if (spriteIndex >= sprites.Length)
+        {
+            spriteIndex = 0;
+        }
+
+        spriteRenderer.sprite = sprites[spriteIndex];
     }
 }
