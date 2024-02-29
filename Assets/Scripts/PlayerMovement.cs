@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     float dive_time = 0f;
     bool level_peak = false;
 
+    float character_z_rot = 0f;
+
+
     float start_peak_vector;
     bool first_time = true;
 
@@ -55,11 +58,20 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+
+        transform.Rotate(0f, 0f, character_z_rot) ;
+        //Mathf.Clamp(character_z_rot, -20f, 20f);
+
+
         input_lockout_time += Time.deltaTime;
 
         //while space is being held down character accelerates downwards and counts how long its happening for
         if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
         {
+            if (character_z_rot > 0f)
+                character_z_rot -= Mathf.Clamp(.02f * 2, -20f, 20f);
+            else
+                character_z_rot -= Mathf.Clamp(.02f, -20f, 20f);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
             background_speed += .01f;
@@ -71,6 +83,10 @@ public class PlayerMovement : MonoBehaviour
         //on release space the player shoots back up for the amount of time space was held down for
         if(!Input.GetKey("space") && dive_time > 0f)
         {
+            if (character_z_rot < 0f)
+                character_z_rot += Mathf.Clamp(.02f * 2, -20f, 20f);
+            else
+                character_z_rot += Mathf.Clamp(.02f, -20f, 20f);
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force * 2f);
             dive_time -= Time.deltaTime;
             //instead of instantly stopping at peak, this starts smoothing it so it looks nicer 
