@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     float dive_time = 0f;
     bool level_peak = false;
 
+    bool burning = false;
+
     float character_z_rot = 0f;
 
 
@@ -57,10 +59,29 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(transform.position.y > 5.5f)
+        {
+            burning = true;
+        } else {
+            burning = false;
+        }
 
 
-        transform.Rotate(0f, 0f, character_z_rot) ;
-        //Mathf.Clamp(character_z_rot, -20f, 20f);
+        if (character_z_rot > 20f)
+            character_z_rot = 20f;
+        else if (character_z_rot < -20f)
+            character_z_rot = -20f;
+
+        if(dive_time <= 0f && character_z_rot > 0)
+            character_z_rot -= Time.deltaTime * 10;
+        else if (dive_time <= 0f && character_z_rot < 0)
+            character_z_rot += Time.deltaTime * 10;
+
+
+
+
+        transform.rotation = Quaternion.Euler(0f, 0f, character_z_rot) ;
+        //character_z_rot = Mathf.Clamp((character_z_rot + Time.deltaTime), -20f, 20f);
 
 
         input_lockout_time += Time.deltaTime;
@@ -68,10 +89,12 @@ public class PlayerMovement : MonoBehaviour
         //while space is being held down character accelerates downwards and counts how long its happening for
         if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
         {
+
             if (character_z_rot > 0f)
-                character_z_rot -= Mathf.Clamp(.02f * 2, -20f, 20f);
+                character_z_rot -= Time.deltaTime * 100;
             else
-                character_z_rot -= Mathf.Clamp(.02f, -20f, 20f);
+                character_z_rot -= Time.deltaTime * 50;
+
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
             background_speed += .01f;
@@ -84,9 +107,11 @@ public class PlayerMovement : MonoBehaviour
         if(!Input.GetKey("space") && dive_time > 0f)
         {
             if (character_z_rot < 0f)
-                character_z_rot += Mathf.Clamp(.02f * 2, -20f, 20f);
+                character_z_rot += Time.deltaTime * 100;
             else
-                character_z_rot += Mathf.Clamp(.02f, -20f, 20f);
+                character_z_rot += Time.deltaTime * 50;
+
+
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force * 2f);
             dive_time -= Time.deltaTime;
             //instead of instantly stopping at peak, this starts smoothing it so it looks nicer 
