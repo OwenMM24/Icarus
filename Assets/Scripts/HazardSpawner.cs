@@ -20,7 +20,7 @@ public class HazardSpawner : MonoBehaviour
     IEnumerator HazardSpawning()
     {
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         while (game_manager.play_game == true)
         {
