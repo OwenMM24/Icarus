@@ -17,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     float dive_time = 0f;
     bool level_peak = false;
 
-    bool burning = false;
-
     float character_z_rot = 0f;
 
 
@@ -59,13 +57,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(transform.position.y > 5.5f)
-        {
-            burning = true;
-        } else {
-            burning = false;
-        }
-
 
         if (character_z_rot > 20f)
             character_z_rot = 20f;
@@ -99,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             dive_time += Time.deltaTime;
             background_speed += .01f;
             background_scroll.SetSpeed(background_speed);
-            gameManager.changeStability(-.1f);
+            gameManager.ChangeStability(-.1f);
         }
         
 

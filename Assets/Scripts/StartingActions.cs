@@ -61,7 +61,7 @@ public class StartingActions : MonoBehaviour
                     player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 3.6f), ForceMode2D.Impulse);
                     jumpped = true;
                     playerMovement.enabled = true;
-                    gameManager.enabled = true;
+                    gameManager.startGame();
                 }
             }
 
