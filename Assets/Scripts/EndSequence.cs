@@ -26,16 +26,7 @@ public class EndSequence : MonoBehaviour
                 scroll_speed = Mathf.Sin(lost_timer);
             else { lost = false; scroll_speed = 0f; plat_appear = true; }
             background_scroll.SetSpeed(scroll_speed * 200f);
-            //Debug.Log(scroll_speed);
         }
-/*        else if (plat_appear)
-        {
-            
-            plat_appear = false;
-
-        }*/
-
-
     }
 
 

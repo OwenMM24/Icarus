@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     float input_lockout_time, input_lockout_timer = .5f;
 
+
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         background_speed = background_scroll.GetSpeed();
         InvokeRepeating(nameof(Animatesprite), 0.75f, 0.75f);
@@ -58,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+
         if (character_z_rot > 20f)
             character_z_rot = 20f;
         else if (character_z_rot < -20f)
@@ -80,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         //while space is being held down character accelerates downwards and counts how long its happening for
         if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
         {
-
+            gameManager.SetPlayerSpeed(.01f);
             if (character_z_rot > 0f)
                 character_z_rot -= Time.deltaTime * 100;
             else
@@ -88,8 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
-            background_speed += .01f;
-            background_scroll.SetSpeed(background_speed);
+            //background_speed += .01f;
+            //background_scroll.SetSpeed(background_speed);
             gameManager.ChangeStability(-.1f);
         }
         
@@ -135,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
+
 
     private void Animatesprite()
     {

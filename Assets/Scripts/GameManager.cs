@@ -6,11 +6,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public BackgroundScroll background_scroll;
     [SerializeField] Image stability_bar;
     float stability = 100f;
     public GameObject player;
     public GameObject particles;
-    bool play_game = false;
+    public bool play_game = false;
     public EndSequence end_sequence;
     [SerializeField] Color transparent;
     [SerializeField] TextMeshProUGUI text1;
@@ -21,9 +22,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject retry_button;
 
+    float player_speed = 3f;
+    [SerializeField] TMP_Text speed_text;
+
     // Start is called before the first frame update
     void Start()
     {
+        speed_text.text = "speed\n" + player_speed.ToString("f") + " m/s";
         particles.SetActive(false);
     }
 
@@ -32,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         if (play_game)
         {
+            player_speed += .005f;
+            speed_text.text = "speed\n" + player_speed.ToString("f") + " m/s";
+            background_scroll.SetSpeed(player_speed / 3);
+
             if (player.transform.position.y > 5.5)
             {
                 particles.SetActive(true);
@@ -45,12 +54,12 @@ public class GameManager : MonoBehaviour
             {
                 player.SetActive(false);
                 play_game = false;
-                end_sequence.Sequence();
+                background_scroll.SetSpeed(0f);
                 StartCoroutine(UIFade());
             }
 
 
-            stability -= Time.deltaTime * 3f;
+            stability -= Time.deltaTime * 2f;
             stability_bar.fillAmount = Mathf.Clamp(stability, 0f, 100f) / 100f;
             if (stability <= 0f)
             {
@@ -61,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator UIFade()
     {
+        yield return new WaitForSeconds(1f);
+        end_sequence.Sequence();
         yield return new WaitForSeconds(0.5f);
 
         while (fade_timer < 2f) {
@@ -80,10 +91,18 @@ public class GameManager : MonoBehaviour
         retry_button.SetActive(true);
     }
 
+    public void SetPlayerSpeed(float value)
+    {
+        player_speed += value;
+        if (player_speed < 3f)
+            player_speed = 3f;
+    }
 
     public void ChangeStability(float amount)
     {
         stability += amount;
+        if (stability > 100f)
+            stability = 100f;
         stability_bar.fillAmount = Mathf.Clamp(stability, 0f, 100f) / 100f;
     }
     

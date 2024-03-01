@@ -8,6 +8,7 @@ public class StartingActions : MonoBehaviour
 {
     bool start_sequence, controls_availible, jumpped = false;
 
+    public HazardSpawner hazard_spawner;
     public PlayerMovement playerMovement;
     public GameManager gameManager;
 
@@ -59,6 +60,7 @@ public class StartingActions : MonoBehaviour
                 if (!jumpped)
                 {
                     player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 3.6f), ForceMode2D.Impulse);
+                    hazard_spawner.enabled = true;
                     jumpped = true;
                     playerMovement.enabled = true;
                     gameManager.startGame();
