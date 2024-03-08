@@ -46,7 +46,7 @@ public class HazardSpawner : MonoBehaviour
         {
             y_pos = Random.Range(-5f, 5f);
             ran_obstacle = Random.Range(0, 2);
-            delay_value = Random.Range(4f, 8f);
+            delay_value = Random.Range(4f, 7f);
             yield return new WaitForSeconds(delay_value);
             Instantiate(obstacles[ran_obstacle], new Vector2(x_pos, y_pos), Quaternion.identity);
 
@@ -64,7 +64,7 @@ public class HazardSpawner : MonoBehaviour
         {
             y_pos = Random.Range(-5f, 5f);
             ran_obstacle = Random.Range(2, 4);
-            delay_value = Random.Range(4f, 8f);
+            delay_value = Random.Range(4f, 7f);
             yield return new WaitForSeconds(delay_value);
             Instantiate(obstacles[ran_obstacle], new Vector2(x_pos, y_pos), Quaternion.identity);
 
