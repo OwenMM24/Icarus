@@ -23,9 +23,9 @@ public class EndSequence : MonoBehaviour
         if (lost) {
             lost_timer += Time.deltaTime;
             if (scroll_speed >= 0)
-                scroll_speed = Mathf.Sin(lost_timer);
+                scroll_speed = Mathf.Sin(lost_timer*1.5f);
             else { lost = false; scroll_speed = 0f; plat_appear = true; }
-            background_scroll.SetSpeed(scroll_speed * 200f);
+            background_scroll.SetSpeed(scroll_speed * 100f);
         }
     }
 
@@ -33,7 +33,7 @@ public class EndSequence : MonoBehaviour
 
     IEnumerator PlatAppear()
     {
-        yield return new WaitForSeconds(2.3f);  
+        yield return new WaitForSeconds(1.27f);  
         Instantiate(platform, new Vector3(16f, -4.5f, 0f), Quaternion.identity);
         yield return null;
     }

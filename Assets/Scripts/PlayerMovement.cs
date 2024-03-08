@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //when space is pressed down is resets variables
-        if (Input.GetKeyDown("space") && input_lockout_time >= input_lockout_timer)
+        if (Input.GetKeyDown("space") && input_lockout_time > input_lockout_timer)
         {
             dive_time = 0f;
             level_peak = false;
@@ -55,8 +55,10 @@ public class PlayerMovement : MonoBehaviour
             first_time = true;
         }
         if (Input.GetKeyUp("space"))
+        {
             input_lockout_time = 0f;
-        
+            //Debug.Log("-----------------");
+        }
     }
 
     void FixedUpdate()
@@ -79,11 +81,11 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, character_z_rot) ;
         //character_z_rot = Mathf.Clamp((character_z_rot + Time.deltaTime), -20f, 20f);
 
-
+        //Debug.Log(input_lockout_time += Time.deltaTime);
         input_lockout_time += Time.deltaTime;
 
         //while space is being held down character accelerates downwards and counts how long its happening for
-        if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
+        if (Input.GetKey("space") && input_lockout_time > input_lockout_timer)
         {
             gameManager.SetPlayerSpeed(.01f);
             if (character_z_rot > 0f)
@@ -93,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
+            if (dive_time > .7f)
+                dive_time = 0.7f;
+            //Debug.Log("-----------------");
             //background_speed += .01f;
             //background_scroll.SetSpeed(background_speed);
             gameManager.ChangeStability(-.1f);
@@ -121,6 +126,12 @@ public class PlayerMovement : MonoBehaviour
             if (first_time)
             {
                 start_peak_vector = rb.velocity.y;
+                if (start_peak_vector > 7f)
+                {
+                    start_peak_vector = 7f;
+                    rb.velocity = new Vector3(rb.velocity.x, start_peak_vector);
+                }
+                Debug.Log(rb.velocity.y);
                 first_time = false;
             }
 

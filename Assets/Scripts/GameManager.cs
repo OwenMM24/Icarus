@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = 60;
         speed_text.text = "speed\n" + player_speed.ToString("f") + " m/s";
         particles.SetActive(false);
     }

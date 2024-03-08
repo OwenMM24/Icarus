@@ -8,6 +8,7 @@ public class HazardSpawner : MonoBehaviour
     float delay_value, x_pos, y_pos;
     public GameManager game_manager;
     [SerializeField] GameObject[] obstacles;
+    [SerializeField] GameObject fast_particles, slow_particles;
 
     private void Start()
     {
@@ -15,6 +16,25 @@ public class HazardSpawner : MonoBehaviour
         x_pos = transform.position.x;
         StartCoroutine(HazardSpawning());
         StartCoroutine(HelpSpawning());
+    }
+
+    public void Speed_Up_On()
+    {
+        fast_particles.SetActive(true);
+    }
+
+    public void Speed_Up_Off()
+    {
+        fast_particles.SetActive(false);
+    }
+
+    public void Slow_Down_On()
+    {
+        slow_particles.SetActive(true);
+    }
+    public void Slow_Down_Off()
+    {
+        slow_particles.SetActive(false);
     }
 
     IEnumerator HazardSpawning()
