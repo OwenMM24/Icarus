@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
 
     float input_lockout_time, input_lockout_timer = .5f;
 
-
+    //Player audio varibles
+    public AudioSource flap;
 
     private void Awake()
     {
@@ -53,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
             level_peak = false;
             rb.velocity = Vector3.zero;
             first_time = true;
+            //play the flap sound
+            flap.Play();
         }
         if (Input.GetKeyUp("space"))
         {
