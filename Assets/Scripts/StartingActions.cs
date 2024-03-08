@@ -19,7 +19,7 @@ public class StartingActions : MonoBehaviour
 
     public BackgroundScroll background_scroll;
 
-
+    public AudioSource startSound;
 
 
     // Start is called before the first frame update
@@ -27,6 +27,8 @@ public class StartingActions : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         platform_start_pos = start_platform.transform.position;
+        AudioSource startSound = GetComponent<AudioSource>();
+        startSound.Play();
     }
 
 /*    // Update is called once per frame

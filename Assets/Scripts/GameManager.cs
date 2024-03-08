@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     float player_speed = 3f;
     [SerializeField] TMP_Text speed_text;
 
+    public AudioSource deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,8 @@ public class GameManager : MonoBehaviour
                 play_game = false;
                 background_scroll.SetSpeed(0f);
                 StartCoroutine(UIFade());
+
+                deathSound.Play();
             }
 
 
