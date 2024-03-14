@@ -96,12 +96,19 @@ public class PlayerMovement : MonoBehaviour
                 character_z_rot += Time.deltaTime * 50;
 
 
+
+            rb.gravityScale = .65f;
+
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force *2f);
             dive_time -= Time.deltaTime;
 
         }
 
-
+        if (dive_time <= 0f)
+        {
+            rb.gravityScale = .1f;
+            Debug.Log("------");
+        }
     }
 
     private void Animatesprite()
