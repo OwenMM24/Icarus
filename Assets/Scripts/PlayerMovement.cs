@@ -29,40 +29,28 @@ public class PlayerMovement : MonoBehaviour
     //Player audio varibles
     public AudioSource flap;
 
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         background_speed = background_scroll.GetSpeed();
-        InvokeRepeating(nameof(Animatesprite), 0.75f, 0.75f);
     }
-
-    // Update is called once per frame
 
     private void Update()
     {
         //when space is pressed down is resets variables
-        if (Input.GetKeyDown("space") && input_lockout_time > input_lockout_timer)
+        if (Input.GetKeyDown("space"))
         {
             dive_time = 0f;
-            level_peak = false;
             rb.velocity = Vector3.zero;
-            first_time = true;
-            //play the flap sound
-            flap.Play();
-        }
-        if (Input.GetKeyUp("space"))
-        {
-            input_lockout_time = 0f;
-            //Debug.Log("-----------------");
         }
     }
+
 
     void FixedUpdate()
     {
@@ -73,24 +61,21 @@ public class PlayerMovement : MonoBehaviour
         else if (character_z_rot < -20f)
             character_z_rot = -20f;
 
-        if(dive_time <= 0f && character_z_rot > 0)
+        if (dive_time <= 0f && character_z_rot > 0)
             character_z_rot -= Time.deltaTime * 10;
         else if (dive_time <= 0f && character_z_rot < 0)
             character_z_rot += Time.deltaTime * 10;
 
+        transform.rotation = Quaternion.Euler(0f, 0f, character_z_rot);
 
 
 
-        transform.rotation = Quaternion.Euler(0f, 0f, character_z_rot) ;
-        //character_z_rot = Mathf.Clamp((character_z_rot + Time.deltaTime), -20f, 20f);
 
-        //Debug.Log(input_lockout_time += Time.deltaTime);
-        input_lockout_time += Time.deltaTime;
 
         //while space is being held down character accelerates downwards and counts how long its happening for
-        if (Input.GetKey("space") && input_lockout_time > input_lockout_timer)
+        if (Input.GetKey("space"))
         {
-            gameManager.SetPlayerSpeed(.01f);
+
             if (character_z_rot > 0f)
                 character_z_rot -= Time.deltaTime * 100;
             else
@@ -98,17 +83,12 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
             dive_time += Time.deltaTime;
-            if (dive_time > .7f)
-                dive_time = 0.7f;
-            //Debug.Log("-----------------");
-            //background_speed += .01f;
-            //background_scroll.SetSpeed(background_speed);
-            gameManager.ChangeStability(-.1f);
+
         }
-        
+
 
         //on release space the player shoots back up for the amount of time space was held down for
-        if(!Input.GetKey("space") && dive_time > 0f)
+        if (!Input.GetKey("space") && dive_time > 0f)
         {
             if (character_z_rot < 0f)
                 character_z_rot += Time.deltaTime * 100;
@@ -116,46 +96,13 @@ public class PlayerMovement : MonoBehaviour
                 character_z_rot += Time.deltaTime * 50;
 
 
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force * 2f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force *2f);
             dive_time -= Time.deltaTime;
-            //instead of instantly stopping at peak, this starts smoothing it so it looks nicer 
-            if (dive_time <= 0f)
-                level_peak = true;
+
         }
 
-        if(level_peak == true)
-        {
-            //makes sure start_peak_vector isnt assigned to the velocity anymore than just the first time this is hit
-            if (first_time)
-            {
-                start_peak_vector = rb.velocity.y;
-                if (start_peak_vector > 7f)
-                {
-                    start_peak_vector = 7f;
-                    rb.velocity = new Vector3(rb.velocity.x, start_peak_vector);
-                }
-                Debug.Log(rb.velocity.y);
-                first_time = false;
-            }
 
-            //proccess of smoothly making y velocity to 0
-            if (start_peak_vector > 0f)
-            {
-                rb.velocity = new Vector3(rb.velocity.x, start_peak_vector);
-                start_peak_vector -= Time.deltaTime * 5f;
-            }
-
-            //finished, reset values
-            else
-            {
-                level_peak = false;
-                rb.velocity = Vector3.zero;
-                first_time = true;
-            }
-        }
     }
-
-
 
     private void Animatesprite()
     {
