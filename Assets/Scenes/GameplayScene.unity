@@ -3105,7 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background_scroll: {fileID: 367178828}
-  platform: {fileID: 7856472341191551292, guid: 6d56ee69de3cd1842af80092afa135aa, type: 3}
+  platform: {fileID: 7856472341191551292, guid: 1c7b9e94f7b4b8b49969e7c15ddc39cc, type: 3}
 --- !u!1 &1772359261
 GameObject:
   m_ObjectHideFlags: 0
