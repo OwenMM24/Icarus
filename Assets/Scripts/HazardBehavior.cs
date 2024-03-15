@@ -8,6 +8,7 @@ public class HazardBehavior : MonoBehaviour
     public enum Type { slow, drain, speed, repair }
     float change_speed, change_stability = 0f;
     GameManager game_manager;
+    PlayerTrail player_trail;
     HazardSpawner hazard_spawner;
 
     // Start is called before the first frame update
@@ -15,10 +16,11 @@ public class HazardBehavior : MonoBehaviour
     {
         game_manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         hazard_spawner = GameObject.Find("HazardSpawnPoint").GetComponent<HazardSpawner>();
+        player_trail = GameObject.Find("Player_trail").GetComponent<PlayerTrail>();
 
         speed = Random.Range(3f, 5.5f);
-        x_scale = Random.Range(.2f, .4f);
-        y_scale = Random.Range(.2f, .4f);
+        x_scale = Random.Range(.2f, .55f);
+        y_scale = Random.Range(.2f, .55f);
 
         Type obstacle_type;
         if (gameObject.name == "SlowDown(Clone)") {
@@ -33,12 +35,12 @@ public class HazardBehavior : MonoBehaviour
         else if (gameObject.name == "SpeedUp(Clone)")
         {
             obstacle_type = Type.speed;
-            change_speed = .005f;
+            change_speed = .007f;
         }
         else
         {
             obstacle_type = Type.repair;
-            change_stability = .02f;
+            change_stability = .03f;
         }
 
         transform.localScale = new Vector2(x_scale, y_scale);
@@ -62,7 +64,10 @@ public class HazardBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.name == "SpeedUp(Clone)")
+        {
             hazard_spawner.Speed_Up_On();
+            player_trail.StartTrail();
+        }
         if (gameObject.name == "SlowDown(Clone)")
             hazard_spawner.Slow_Down_On();
         StartCoroutine(HazardEffects());
@@ -72,7 +77,10 @@ public class HazardBehavior : MonoBehaviour
         if(gameObject.name == "SlowDown(Clone)")
             hazard_spawner.Slow_Down_Off();
         if (gameObject.name == "SpeedUp(Clone)")
+        {
             hazard_spawner.Speed_Up_Off();
+            player_trail.EndTrail();
+        }
         StopAllCoroutines();
     }
 

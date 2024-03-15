@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject platform;
     public BackgroundScroll background_scroll;
     [SerializeField] Image stability_bar;
     float stability = 100f;
@@ -16,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Color transparent;
     [SerializeField] TextMeshProUGUI text1;
     [SerializeField] TextMeshProUGUI text2;
+    [SerializeField] TextMeshProUGUI winText1;
+    [SerializeField] TextMeshProUGUI winText2;
+
+    float distance = 0f;
 
     float fade_timer = 1;
     float fade_time = 1f;
@@ -38,9 +43,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+/*        distance += Time.deltaTime * player_speed;
+
+        if(distance >= 7f)
+        {
+            Instantiate(platform, new Vector3(16f, -4.5f, 0f), Quaternion.identity);
+        }*/
+
         if (play_game)
         {
-            player_speed += .005f;
+            player_speed += .007f;
             speed_text.text = "speed\n" + player_speed.ToString("f") + " m/s";
             background_scroll.SetSpeed(player_speed / 3);
 
@@ -68,7 +80,7 @@ public class GameManager : MonoBehaviour
             stability_bar.fillAmount = Mathf.Clamp(stability, 0f, 100f) / 100f;
             if (stability <= 0f)
             {
-                player.GetComponent<Rigidbody2D>().gravityScale = .5f;
+                player.GetComponent<Rigidbody2D>().gravityScale = 1f;
             }
         }
     }
@@ -96,6 +108,36 @@ public class GameManager : MonoBehaviour
         retry_button.SetActive(true);
     }
 
+ /*   IEnumerator WinUIFade()
+    {
+        yield return new WaitForSeconds(1f);
+        end_sequence.Sequence();
+        yield return new WaitForSeconds(0.5f);
+
+        while (fade_timer < 2f)
+        {
+            fade_timer += Time.deltaTime;
+            winText1.color = Color.Lerp(text1.color, transparent, Time.deltaTime * fade_time);
+            yield return null;
+        }
+
+        while (fade_timer < 4f)
+        {
+            fade_timer += Time.deltaTime;
+            winText2.color = Color.Lerp(text2.color, transparent, Time.deltaTime * fade_time);
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(1f);
+        retry_button.SetActive(true);
+    }*/
+
+/*    public void startWin()
+    {
+        StartCoroutine(WinUIFade());
+    }*/
+
+
     public void SetPlayerSpeed(float value)
     {
         player_speed += value;
@@ -115,4 +157,6 @@ public class GameManager : MonoBehaviour
     {
         play_game = true;
     }
+
+
 }

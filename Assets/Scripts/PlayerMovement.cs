@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     float start_peak_vector;
     bool first_time = true;
 
-    float input_lockout_time, input_lockout_timer = .5f;
+    float input_lockout_time, input_lockout_timer = .3f;
 
     //Player audio varibles
     public AudioSource flap;
@@ -44,17 +44,24 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //when space is pressed down is resets variables
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && input_lockout_time >= input_lockout_timer)
         {
             dive_time = 0f;
             rb.velocity = Vector3.zero;
+            spriteRenderer.sprite = sprites[1];
+        }
+        else if (Input.GetKeyUp("space") && input_lockout_time >= input_lockout_timer)
+        {
+            input_lockout_time = 0f;
+            spriteRenderer.sprite = sprites[0];
         }
     }
 
 
     void FixedUpdate()
     {
-
+        input_lockout_time += Time.deltaTime;
+        //Debug.Log(input_lockout_time);
 
         if (character_z_rot > 20f)
             character_z_rot = 20f;
@@ -73,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //while space is being held down character accelerates downwards and counts how long its happening for
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
         {
 
             if (character_z_rot > 0f)
@@ -107,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
         if (dive_time <= 0f)
         {
             rb.gravityScale = .1f;
-            Debug.Log("------");
+            //Debug.Log("------");
         }
     }
 
