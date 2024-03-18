@@ -3131,7 +3131,7 @@ MonoBehaviour:
   start_platform: {fileID: 1179504915}
   player: {fileID: 2132011874}
   background_scroll: {fileID: 367178828}
-  startSound: {fileID: 1491989012}
+  startSound: {fileID: 0}
 --- !u!4 &1766189625
 Transform:
   m_ObjectHideFlags: 0

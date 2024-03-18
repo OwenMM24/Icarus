@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI winText1;
     [SerializeField] TextMeshProUGUI winText2;
 
-    float distance = 0f;
+  //  float distance = 0f;
 
     float fade_timer = 1;
     float fade_time = 1f;
@@ -43,12 +43,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-/*        distance += Time.deltaTime * player_speed;
-
-        if(distance >= 7f)
-        {
-            Instantiate(platform, new Vector3(16f, -4.5f, 0f), Quaternion.identity);
-        }*/
 
         if (play_game)
         {
@@ -108,36 +102,6 @@ public class GameManager : MonoBehaviour
         retry_button.SetActive(true);
     }
 
- /*   IEnumerator WinUIFade()
-    {
-        yield return new WaitForSeconds(1f);
-        end_sequence.Sequence();
-        yield return new WaitForSeconds(0.5f);
-
-        while (fade_timer < 2f)
-        {
-            fade_timer += Time.deltaTime;
-            winText1.color = Color.Lerp(text1.color, transparent, Time.deltaTime * fade_time);
-            yield return null;
-        }
-
-        while (fade_timer < 4f)
-        {
-            fade_timer += Time.deltaTime;
-            winText2.color = Color.Lerp(text2.color, transparent, Time.deltaTime * fade_time);
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-        retry_button.SetActive(true);
-    }*/
-
-/*    public void startWin()
-    {
-        StartCoroutine(WinUIFade());
-    }*/
-
-
     public void SetPlayerSpeed(float value)
     {
         player_speed += value;
@@ -157,6 +121,4 @@ public class GameManager : MonoBehaviour
     {
         play_game = true;
     }
-
-
 }

@@ -16,20 +16,20 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     float dive_force = -0.3f;
     float dive_time = 0f;
-    bool level_peak = false;
+   // bool level_peak = false;
 
     float character_z_rot = 0f;
 
 
     float start_peak_vector;
-    bool first_time = true;
+  //  bool first_time = true;
 
     float input_lockout_time, input_lockout_timer = .3f;
 
     //Player audio varibles
     public AudioSource flap;
 
-
+    
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -61,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         input_lockout_time += Time.deltaTime;
-        //Debug.Log(input_lockout_time);
 
         if (character_z_rot > 20f)
             character_z_rot = 20f;
@@ -114,7 +113,6 @@ public class PlayerMovement : MonoBehaviour
         if (dive_time <= 0f)
         {
             rb.gravityScale = .1f;
-            //Debug.Log("------");
         }
     }
 
