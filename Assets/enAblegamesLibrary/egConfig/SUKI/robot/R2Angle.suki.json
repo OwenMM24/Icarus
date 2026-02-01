@@ -1,0 +1,22 @@
+{
+    "_id": "5905235c04738f5c88da7644",
+
+    "SchemaName": "pinch",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "SingleRobotAngle",
+    "RobotAngles": [
+        "R2"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0
+        "highBounds": 90,
+        "reverse":false
+        "useExtents": true
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

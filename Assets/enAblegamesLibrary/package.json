@@ -1,0 +1,25 @@
+{
+  "name": "com.enablegames.library",
+  "version": "2.0.9",
+  "displayName": "enAbleGames Library",
+  "description": "Main Package for enAbleGames",
+  "unity": "2020.3",
+  "dependencies": {
+    "com.unity.textmeshpro": "3.0.0",
+    "com.unity.xr.arfoundation": "4.1.13",
+    "com.unity.xr.arkit": "4.1.13",
+    "com.unity.xr.arcore": "4.1.13",
+    "com.unity.xr.magicleap": "6.4.0",
+    "com.unity.xr.arkit-face-tracking": "4.1.13",
+    "com.unity.xr.interaction.toolkit": "2.5.0"
+  },
+  "keywords": [
+    "Kinematic Input",
+    "AR"
+  ],
+  "author": {
+    "name": "enAbleGames",
+    "email": "enablegamesdev@gmail.com",
+    "url": "https://www.enablegames.com"
+  }
+}

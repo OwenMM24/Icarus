@@ -1,0 +1,17 @@
+{
+    "name": "EAGSerialHandler",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0ed10d91546c247028579d172b19fe9d",
+        "GUID:9a41512655baa4dc0ab6dc26afeb772c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

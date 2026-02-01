@@ -1,0 +1,23 @@
+{
+    "_id": "5905235c04738f5c88da7769",
+    "SchemaName": "placement",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "MultiNodeRangeBetween",
+    "BodyNodes": [
+        "LeftFoot",
+        "Spine",
+        "RightFoot"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0.35,
+        "highBounds": 0.65,
+        "reverse": false,
+        "useExtents": false
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

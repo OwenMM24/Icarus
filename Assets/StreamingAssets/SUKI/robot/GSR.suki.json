@@ -1,0 +1,22 @@
+{
+    "_id": "5905235c04738f5c88da7643",
+
+    "SchemaName": "galvanicSkinResponse",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "SingleBiometricValue",
+    "BiometricValues": [
+        "GSR"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0,
+        "highBounds": 500,
+        "reverse":false,
+        "useExtents": false
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

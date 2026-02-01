@@ -1,0 +1,105 @@
+{
+    "name": "Default Parameters",
+    "categories": {
+        "Gameplay": [
+            {
+                "strings": [
+                    "Demo"
+                ],
+                "value_": "Demo",
+                "name": "Suki type",
+                "alias": "Motion Tracking Category",
+                "description": "Category of motion tracking mode.",
+                "$type": "StringListParameter",
+                "$id": "1"
+            },
+            {
+                "strings": [
+                    "Demo\\1D_LeftElbowAngle.suki",
+                    "Demo\\1D_SerialInputDemo.suki",
+                    "Demo\\2D_LeftHand.suki"
+        	],
+        	"value_": "Demo\\1D_LeftElbowAngle.suki",
+                "name": "Suki file",
+                "alias": "Motion Tracking Mode",
+                "description": "Which body motion to track to control the game.",
+                "$type": "StringListParameter",
+                "$id": "2"
+            },
+            {
+                "value_": true,
+                "gameObjectsToactivateName": null,
+                "name": "Enable Suki Extents",
+                "alias": "Custom Range of Motion",
+                "description": "Use player's Range Of Motion instead of default for Body Tracking Mode.",
+                "$type": "BoolParameter",
+                "$id": "3"
+            },
+            {
+                "min_": 0.0,
+                "max_": 1.0,
+                "value_": 0,
+                "tick_": 0.05,
+                "name": "Suki Default Percent",
+                "alias": "Default Range %",
+                "description": "1=start at default range, 0=start at custom range",
+                "$type": "RangeParameter",
+                "$id": "4"
+            },
+            {
+                "value_": true,
+                "gameObjectsToactivateName": null,
+                "name": "Tick Tracking",
+                "alias": "Tick Tracking",
+                "description": "Demo For Adding tick module for tracker",
+                "$type": "BoolParameter",
+                "$id": "5"
+            },
+            {
+                "min_": 0.0,
+                "max_": 20.0,
+                "value_": 5,
+                "tick_": 1,
+                "name": "Message Timeout",
+                "alias": "Message Timeout",
+                "description": "Time between tracker messages, in second",
+                "$type": "RangeParameter",
+                "$id": "6"
+            },
+            {
+                "min_": 0.0,
+                "max_": 10.0,
+                "value_": 2,
+                "tick_": 0.1,
+                "name": "speed",
+                "alias": "Joystick Sensitivity",
+                "description": "Sensitivity of the virtual joystick",
+                "$type": "RangeParameter",
+                "$id": "7"
+            }
+        ]
+    },
+    "parameters": {
+        "Suki type": {
+            "$ref": "1"
+        },
+        "Suki file": {
+            "$ref": "2"
+        },
+        "Enable Suki Extents": {
+            "$ref": "3"
+        },
+        "Suki Default Percent": {
+            "$ref": "4"
+        },
+        "Tick Tracking": {
+            "$ref": "5"
+        },
+        "Message Timeout": {
+            "$ref": "6"
+        },
+        "speed": {
+            "$ref": "7"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "_id": "5905235c04738f5c88da7770",
+
+    "SchemaName": "lkick",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "MultiNodeVectorBetween",
+    "BodyNodes": [
+        "LeftUpperLeg",
+        "LeftFoot"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": {
+        "reductionOperator": "XZMagnitude"
+    },
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0.1,
+        "highBounds": 0.9,
+        "reverse": true,
+        "useExtents": true
+
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

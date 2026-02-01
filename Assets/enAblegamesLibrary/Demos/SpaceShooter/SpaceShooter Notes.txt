@@ -1,0 +1,6 @@
+Run the game from the egMainMenu_SpaceShooter scene.
+
+	-Note in this scene how the _ParameterHandler object is set to read 	"DefaultParameters_SpaceShooter.json" rather than "DefaultParameters.json" 
+	as _ParameterHandler in the egMainMenu scene is set.
+
+SpaceShooter is a good example of setting parameters with DefaultParameters and setting and reading DDA values.

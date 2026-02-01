@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI winText1;
     [SerializeField] TextMeshProUGUI winText2;
 
-  //  float distance = 0f;
+    public bool allowHeightBurn = true;
+    public bool allowStabilityChange = true;
+
+    //  float distance = 0f;
 
     float fade_timer = 1;
     float fade_time = 1f;
@@ -50,7 +53,7 @@ public class GameManager : MonoBehaviour
             speed_text.text = "speed\n" + player_speed.ToString("f") + " m/s";
             background_scroll.SetSpeed(player_speed / 3);
 
-            if (player.transform.position.y > 5.5)
+            if (player.transform.position.y > 5.5 && allowHeightBurn)
             {
                 particles.SetActive(true);
                 ChangeStability(-.3f);
@@ -70,7 +73,8 @@ public class GameManager : MonoBehaviour
             }
 
 
-            stability -= Time.deltaTime * 2f;
+            if(allowStabilityChange)
+                stability -= Time.deltaTime * 2f;
             stability_bar.fillAmount = Mathf.Clamp(stability, 0f, 100f) / 100f;
             if (stability <= 0f)
             {
@@ -111,6 +115,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeStability(float amount)
     {
+        if (!allowStabilityChange)
+            return;
         stability += amount;
         if (stability > 100f)
             stability = 100f;

@@ -1,0 +1,26 @@
+{
+    "_id": "5905235c04f38ffc88da7149",
+
+    "SchemaName": "LHandGrab",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "MultiNodeAverageRangeBetween",
+    "BodyNodes": [
+        "LeftThumbDistal",
+        "LeftIndexDistal",
+        "LeftMiddleDistal",
+        "LeftRingDistal",
+        "LeftLittleDistal"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 100,
+        "highBounds": 0,
+        "reverse":false,
+        "useExtents": true
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

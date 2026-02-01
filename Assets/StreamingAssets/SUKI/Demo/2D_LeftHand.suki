@@ -1,0 +1,9 @@
+{
+	"entries":[
+		{
+			"Name": "joystick",
+			"URL": "LHand.suki.json",
+			"OverrideJson": null
+		}
+	]
+}

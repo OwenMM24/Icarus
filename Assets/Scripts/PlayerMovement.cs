@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Enablegames;
+using Enablegames.Suki;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,7 +31,11 @@ public class PlayerMovement : MonoBehaviour
     //Player audio varibles
     public AudioSource flap;
 
-    
+    SukiInput suki;
+
+
+
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,17 +43,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        suki = SukiInput.Instance;
         rb = GetComponent<Rigidbody2D>();
         background_speed = background_scroll.GetSpeed();
     }
 
     private void Update()
     {
+
+
         //when space is pressed down is resets variables
         if (Input.GetKeyDown("space") && input_lockout_time >= input_lockout_timer)
         {
             dive_time = 0f;
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             spriteRenderer.sprite = sprites[1];
         }
         else if (Input.GetKeyUp("space") && input_lockout_time >= input_lockout_timer)
@@ -75,11 +84,16 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, character_z_rot);
 
 
+      /*  Debug.Log("Before x");
+        Debug.Log("suki loaded" + suki.GetAllRange()[0]);
+        var x = (suki.GetRange("placement") - 0.5f);
+        print("x value = " + x);*/
 
-
+        var triggered = Input.GetKey("space");// || x > 0;
+        Debug.LogWarning("dsfghj" + rb.linearVelocity);
 
         //while space is being held down character accelerates downwards and counts how long its happening for
-        if (Input.GetKey("space") && input_lockout_time >= input_lockout_timer)
+        if (triggered && input_lockout_time >= input_lockout_timer)
         {
 
             if (character_z_rot > 0f)
@@ -87,14 +101,14 @@ public class PlayerMovement : MonoBehaviour
             else
                 character_z_rot -= Time.deltaTime * 50;
 
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + dive_force);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y + dive_force);
             dive_time += Time.deltaTime;
 
         }
 
 
         //on release space the player shoots back up for the amount of time space was held down for
-        if (!Input.GetKey("space") && dive_time > 0f)
+        if (!triggered && dive_time > 0f)
         {
             if (character_z_rot < 0f)
                 character_z_rot += Time.deltaTime * 100;
@@ -105,7 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.gravityScale = .65f;
 
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + -dive_force *2f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y + -dive_force *2f);
             dive_time -= Time.deltaTime;
 
         }

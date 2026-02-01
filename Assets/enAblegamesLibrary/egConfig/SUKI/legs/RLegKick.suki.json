@@ -1,0 +1,26 @@
+{
+    "_id": "5905235c04738f5c88da1760",
+
+    "SchemaName": "rkick",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "MultiNodeVectorBetween",
+    "BodyNodes": [
+        "RightUpperLeg",
+        "RightFoot"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": {
+        "reductionOperator": "XZMagnitude"
+    },
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0.1,
+        "highBounds": 0.9,
+        "reverse": true,
+        "useExtents": true
+
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

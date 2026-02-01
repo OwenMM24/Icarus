@@ -1,0 +1,15 @@
+{
+    "gameData":
+	[
+        {
+		"Name": "SpaceShooter",
+		"CogDifficulty": 3,
+		"PhysDifficulty": 2,
+		"PlayerCount": 1,
+		"GameInfo": "<i><b>New!</b></i>\n\nThe goal is to destroy enemy ships and dodge incoming bombs.\nThe player is given 6 points per enemy ship destroyed.",
+		"RobotSupport": true,
+		"AssistiveControls": false,
+		"WebLink": "https://www.enablegames.com/games/spaceshooter/"
+    	}
+	]
+}

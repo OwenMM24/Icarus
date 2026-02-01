@@ -61,7 +61,7 @@ public class HazardBehavior : MonoBehaviour
         transform.position = new Vector2(x_pos, transform.position.y);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+/*    void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.name == "SpeedUp(Clone)")
         {
@@ -82,7 +82,7 @@ public class HazardBehavior : MonoBehaviour
             player_trail.EndTrail();
         }
         StopAllCoroutines();
-    }
+    }*/
 
     IEnumerator HazardEffects()
     {

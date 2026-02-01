@@ -1,0 +1,41 @@
+{
+  "Performances": [
+    {
+      "Name": "movementFluidity",
+      "PerfectThreshold": 750,
+      "GoodThreshold": 600,
+      "BadThreshold": 200,
+      "WorseThreshold": 100
+    },
+    {
+      "Name": "DamageToPlayer",
+      "PerfectThreshold": 0,
+      "GoodThreshold": 1,
+      "BadThreshold": 2,
+      "WorseThreshold": 5
+    }
+  ],
+  "Difficulties": [
+    {
+      "Name": "ForceFeedback",
+      "Performances": [
+        "DamageToPlayer"
+      ],
+      "NumberOfLevels": 9
+    },
+    {
+      "Name": "PowerUpSpawnRate",
+      "Performances": [
+        "DamageToPlayer"
+      ],
+      "NumberOfLevels": 9
+    },
+    {
+      "Name": "EnemyAggression",
+      "Performances": [
+        "DamageToPlayer"
+      ],
+      "NumberOfLevels": 9
+    }
+  ]
+}

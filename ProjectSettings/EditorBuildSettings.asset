@@ -11,4 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameplayScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  m_configObjects: {}
+  - enabled: 0
+    path: Assets/enAblegamesLibrary/Scenes/eag_MainMenu.unity
+    guid: f352481a3b3e8084a854581b92e3c17a
+  - enabled: 1
+    path: Assets/enAblegamesLibrary/eag_UI/Scenes/eag_MainMenu.unity
+    guid: fbf6f51bf8de2b3459bde54e78e01866
+  m_configObjects:
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 86b9f911befa31d40a750c7249161b97, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f52dac82bee434c8a8239f7df0d6aba6, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: c077722c8ba9e6c4d9c095b2b053b48b, type: 2}
+  m_UseUCBPForAssetBundles: 0

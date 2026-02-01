@@ -1,0 +1,22 @@
+{
+    "_id": "5905235c04738f5c88da7642",
+
+    "SchemaName": "button",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "SingleRobotAngle",
+    "RobotAngles": [
+        "B1"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0,
+        "highBounds": 1.0,
+        "reverse":false,
+        "useExtents": false
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}

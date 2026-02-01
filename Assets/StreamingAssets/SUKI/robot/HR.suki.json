@@ -1,0 +1,22 @@
+{
+    "_id": "5905235c04738f5c88da7640",
+
+    "SchemaName": "heartRate",
+    "SchemaResolution": "Range",
+    "SchemaDevice": "Kinect",
+    "SchemaMetric": "SingleBiometricValue",
+    "BiometricValues": [
+        "HR"
+    ],
+    "CalculationInfo": null,
+    "ReductionInfo": null,
+    "ConditionInfo": null,
+    "FloatBoundsInfo": {
+        "lowBounds": 0.0,
+        "highBounds": 200.0,
+        "reverse":false,
+        "useExtents": false
+    },
+    "Vector2BoundsInfo": null,
+    "Vector3BoundsInfo": null
+}
