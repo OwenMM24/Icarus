@@ -76,10 +76,10 @@ public class GameManager : MonoBehaviour
             if(allowStabilityChange)
                 stability -= Time.deltaTime * 2f;
             stability_bar.fillAmount = Mathf.Clamp(stability, 0f, 100f) / 100f;
-            if (stability <= 0f)
+/*            if (stability <= 0f)
             {
                 player.GetComponent<Rigidbody2D>().gravityScale = 1f;
-            }
+            }*/
         }
     }
 

@@ -59,6 +59,8 @@ public class StartingActions : MonoBehaviour
                     hazard_spawner.StartSpawner();
                     jumpped = true;
                     playerMovement.controlsLocked = false;
+
+                    playerMovement.StartStuff();
                         
 
                     gameManager.startGame();

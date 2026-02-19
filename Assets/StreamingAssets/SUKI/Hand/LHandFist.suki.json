@@ -16,7 +16,7 @@
     "ReductionInfo": null,
     "ConditionInfo": null,
     "FloatBoundsInfo": {
-        "lowBounds": 100,
+        "lowBounds": 1,
         "highBounds": 0,
         "reverse":false,
         "useExtents": true

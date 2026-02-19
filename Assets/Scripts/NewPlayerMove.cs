@@ -1,13 +1,15 @@
 using Enablegames;
+using Enablegames.Suki;
+using NUnit.Framework;
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using Enablegames.Suki;
+using UnityEngine.XR;
 
 
 public class NewPlayerMove : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
+    //[SerializeField] float moveSpeed;
     [SerializeField] bool spaceHeld;
     [SerializeField] bool allowMovement;
     [SerializeField] bool spaceGoesDown = true;
@@ -30,9 +32,11 @@ public class NewPlayerMove : MonoBehaviour
 
     SukiInput suki;
 
+    //VariableHandler.Instance
 
-    //egFloat moveSpeed = .5f;
-    //VariableHandler.Instance.Register(ParameterStrings.PLAYER_MOVE_SPEED, moveSpeed);
+
+    public egFloat moveSpeed = .5f;
+    public egFloat persentHandHasToClose = .8f;
 
 
 
@@ -43,6 +47,9 @@ public class NewPlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        VariableHandler.Instance.Register(ParameterStrings.PLAYER_MOVE_SPEED, moveSpeed);
+        VariableHandler.Instance.Register(ParameterStrings.PERCENT_HAND_HAS_TO_CLOSE, persentHandHasToClose);
+
         //suki = SukiInput.Instance;
         //Debug.Log("asdfghjklkjhgfd" + suki);
     }
@@ -52,14 +59,15 @@ public class NewPlayerMove : MonoBehaviour
     void Update()
     {
 
-        Debug.Log("Input: " + SukiInput.Instance.GetRange("Placement"));
+        if(suki)
+            Debug.Log("Input: " + suki.GetRange("Placement"));
         if (controlsLocked)
         {
             spaceHeld = false;
             return;
         }
 
-        spaceHeld = Input.GetKey(KeyCode.Space);
+        spaceHeld = Input.GetKey(KeyCode.Space) || suki.GetRange("Placement") < Mathf.Abs(persentHandHasToClose - 1f);
     }
 
     void FixedUpdate()
@@ -132,5 +140,12 @@ public class NewPlayerMove : MonoBehaviour
         coinText.text = "Amount: " + coinCount.ToString();
     }
 
+
+    public void StartStuff()
+    {
+        suki = SukiInput.Instance;
+        controlsLocked = false;
+        allowMovement = true;
+    }
 
 }

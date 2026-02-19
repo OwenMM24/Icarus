@@ -154,6 +154,17 @@
                 "$type": "RangeParameter",
                 "$id": "40"
             },
+			{
+                "min_": 0.1,
+                "max_": 1.0,
+                "value_": 0.8,
+                "tick_": 0.1,
+                "name": "Percent Hand Has To Close",
+                "alias": "Percent Hand Has To Close",
+                "description": "Amount the user has to close their hand to register movement.",
+                "$type": "RangeParameter",
+                "$id": "42"
+            },
             {
                 "value_": true,
                 "gameObjectsToactivateName": null,
@@ -224,6 +235,9 @@
         },
 	"Space Moves Player Down": {
             "$ref": "41"
+        },
+			"Percent Hand Has To Close": {
+            "$ref": "42"
         },
 
     	"Right Hand Mode": {

@@ -14,4 +14,5 @@ public class ParameterStrings
 
     public static string PLAYER_MOVE_SPEED = "Player Move Speed";
     public static string SPACE_MOVES_PLAYER_DOWN = "Space Moves Player Down";
+    public static string PERCENT_HAND_HAS_TO_CLOSE = "Percent Hand Has To Close";
 }

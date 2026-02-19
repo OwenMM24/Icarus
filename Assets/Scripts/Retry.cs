@@ -8,6 +8,6 @@ public class Retry : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("GameplayScene");
+        SceneManager.LoadScene("NewGameplayScene");
     }
 }
